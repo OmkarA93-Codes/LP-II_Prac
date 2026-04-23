@@ -20,3 +20,49 @@ public class Hello1 {
         System.debug(b[i]);
     }
 }
+
+Procedure to run the program on salesforce:
+Step 1: Get a Free Salesforce Account
+If you don't already have one, you need to sign up for a free Salesforce Developer Edition Org.
+
+Go to developer.salesforce.com/signup.
+
+Fill out the form and verify your email to log in.
+
+Step 2: Open the Developer Console
+Once logged into Salesforce, look for the gear icon (Setup) in the top right corner of the screen.
+
+Click the gear icon and select Developer Console from the dropdown menu. 
+A new window will pop up (this is the window shown in your original screenshot).
+
+Step 3: Create and Save the Class
+In the Developer Console, go to File > New > Apex Class.
+
+Name the class exactly Hello1 and click OK.
+
+Paste the code provided earlier into the editor.
+
+Press Ctrl + S (or File > Save) to save it to the cloud.
+
+Step 4: Execute the Code
+Because the method firstHello() is static, you don't even need to create an object to run it.
+ You can run it instantly using the "Execute Anonymous" feature.
+
+In the Developer Console, click on Debug in the top menu.
+
+Select Open Execute Anonymous Window (or press Ctrl + E).
+
+Type the following line to call your method:
+
+Apex
+Hello1.firstHello();
+Check the box at the bottom that says Open Log.
+
+Click Execute.
+
+Step 5: View the Output
+A log file will open automatically. Since Salesforce logs track everything (database queries, limits, etc.), it can be noisy.
+
+Check the Debug Only box at the bottom of the log window.
+
+This will filter out the system noise and show only the text printed by your System.debug() statements!
