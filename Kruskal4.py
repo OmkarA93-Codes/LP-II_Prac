@@ -1,46 +1,54 @@
-# Simple Kruskal Algorithm
+# Simple Kruskal's Algorithm (Without Lambda)
+
+def find(parent, node):
+
+    # Find parent of node
+    while parent[node] != node:
+        node = parent[node]
+
+    return node
+
+
+def union(parent, x, y):
+
+    root_x = find(parent, x)
+    root_y = find(parent, y)
+
+    # Connect sets
+    parent[root_y] = root_x
+
 
 def kruskal(vertices, edges):
 
-    # Sort edges by weight
-    edges.sort(key=lambda x: x[2])
+    # Sort edges by weight manually
+    edges.sort()
 
     parent = {}
 
-    # Initialize parent
+    # Initially each node is its own parent
     for vertex in vertices:
         parent[vertex] = vertex
 
-    # Find function
-    def find(node):
-
-        while parent[node] != node:
-            node = parent[node]
-
-        return node
-
+    mst = []
     total_cost = 0
     mst_path = []
 
     print("Edge \tWeight")
 
-    # Process edges
-    for u, v, w in edges:
+    for weight, u, v in edges:
 
-        root_u = find(u)
-        root_v = find(v)
+        # Check cycle
+        if find(parent, u) != find(parent, v):
 
-        # Avoid cycle
-        if root_u != root_v:
+            union(parent, u, v)
 
-            print(f"{u} - {v}\t{w}")
+            mst.append((u, v, weight))
 
-            total_cost += w
+            total_cost += weight
 
             mst_path.append(f"{u}-{v}")
 
-            # Union
-            parent[root_v] = root_u
+            print(f"{u} - {v}\t{weight}")
 
     print("\nMST Path:")
     print(" -> ".join(mst_path))
@@ -51,15 +59,15 @@ def kruskal(vertices, edges):
 # Vertices
 vertices = ['A', 'B', 'C', 'D', 'E']
 
-# Edges (u, v, weight)
+# Edges (weight, u, v)
 edges = [
-    ('A', 'B', 2),
-    ('A', 'D', 6),
-    ('B', 'C', 3),
-    ('B', 'D', 8),
-    ('B', 'E', 5),
-    ('C', 'E', 7),
-    ('D', 'E', 9)
+    (2, 'A', 'B'),
+    (6, 'A', 'D'),
+    (3, 'B', 'C'),
+    (8, 'B', 'D'),
+    (5, 'B', 'E'),
+    (7, 'C', 'E'),
+    (9, 'D', 'E')
 ]
 
 # Run Kruskal Algorithm
